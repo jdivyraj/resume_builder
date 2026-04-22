@@ -1,103 +1,156 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Resume Builder</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #e0e7ff, #fce7f3);
-        }
+<title>ResumePro</title>
 
-        .container {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-        .card {
-            background: white;
-            padding: 50px 60px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 500px;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    color: white;
+    overflow-x: hidden;
+}
 
-        h1 {
-            margin-bottom: 10px;
-            font-size: 36px;
-        }
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    font-weight: bold;
+}
 
-        p {
-            color: #555;
-            margin-bottom: 30px;
-        }
+.logo {
+    font-size: 20px;
+}
 
-        .btn {
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: white;
-            margin: 10px;
-            display: inline-block;
-            transition: 0.3s;
-        }
+.nav-links a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
 
-        .login {
-            background: #4f46e5;
-        }
+/* HERO */
+.hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
 
-        .signup {
-            background: #10b981;
-        }
+.hero h1 {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
 
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
+.hero p {
+    color: #e0e7ff;
+    margin-bottom: 30px;
+}
 
-        .features {
-            margin-top: 40px;
-            text-align: left;
-        }
+/* BUTTONS */
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    margin: 10px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    transition: 0.3s;
+}
 
-        .feature {
-            margin: 10px 0;
-            color: #444;
-        }
+.login {
+    background: rgba(255,255,255,0.2);
+}
 
-        .logo {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #6366f1;
-            font-weight: bold;
-        }
-    </style>
+.signup {
+    background: #10b981;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* FEATURES */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.feature {
+    text-align: center;
+    max-width: 150px;
+}
+
+.feature i {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+/* FLOATING SHAPES */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+}
+
+.c1 { width: 200px; height: 200px; top: 10%; left: 10%; }
+.c2 { width: 150px; height: 150px; bottom: 15%; right: 10%; }
+.c3 { width: 100px; height: 100px; top: 60%; left: 20%; }
+
+</style>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="card">
+<!-- BACKGROUND SHAPES -->
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
 
-        <div class="logo">✨ ResumePro</div>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">✨ ResumePro</div>
+    <div class="nav-links">
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+    </div>
+</div>
 
-        <h1>Build Your Resume in Minutes</h1>
-        <p>Create professional resumes that stand out and get you hired.</p>
+<!-- HERO -->
+<div class="hero">
 
+    <h1>Build Stunning Resumes<br>in Minutes</h1>
+    <p>Create job-winning resumes with modern templates and instant preview.</p>
+
+    <div>
         <a href="/login" class="btn login">Login</a>
         <a href="/signup" class="btn signup">Get Started</a>
+    </div>
 
-        <div class="features">
-            <div class="feature">✔ Modern Resume Templates</div>
-            <div class="feature">✔ Instant Preview</div>
-            <div class="feature">✔ Download as PDF</div>
+    <div class="features">
+        <div class="feature">
+            <i class="fas fa-file-alt"></i>
+            <p>Templates</p>
         </div>
 
+        <div class="feature">
+            <i class="fas fa-eye"></i>
+            <p>Live Preview</p>
+        </div>
+
+        <div class="feature">
+            <i class="fas fa-download"></i>
+            <p>Export PDF</p>
+        </div>
     </div>
+
 </div>
 
 </body>
