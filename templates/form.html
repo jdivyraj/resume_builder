@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Resume</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: 'Segoe UI';
+            background: #f5f7ff;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Create Your Resume</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+<input type="text" name="name" placeholder="Full Name" required>
+<input type="email" name="email" placeholder="Email">
+<input type="text" name="phone" placeholder="Phone">
+<input type="file" name="photo"><br><br>
+<textarea name="skills" placeholder="Skills"></textarea>
+<textarea name="projects" placeholder="Projects"></textarea>
+<textarea name="education" placeholder="Education"></textarea>
+<textarea name="achievements" placeholder="Achievements"></textarea>
+<textarea name="hobbies" placeholder="Hobbies"></textarea>
+
+        <button>Create Resume</button>
+
+    </form>
+</div>
+
+</body>
+</html>

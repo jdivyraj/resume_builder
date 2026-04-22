@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+        }
+
+        .card {
+            display: flex;
+            width: 900px;
+            height: 520px;
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* LEFT SIDE */
+        .left {
+    width: 50%;
+    background: linear-gradient(135deg, #cdb4db, #ffc8dd);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    color: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+        .left h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .left p {
+            opacity: 0.8;
+        }
+
+        /* RIGHT SIDE */
+        .right {
+            width: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .right h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: none;
+            background: #f1f1f1;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: #e0e7ff;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #6a5acd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* SMALL ANIMATION */
+        .card {
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* SHAPES */
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+.c1 {
+    width: 120px;
+    height: 120px;
+    background: #ffffff;
+    top: 20px;
+    left: 20px;
+}
+
+.c2 {
+    width: 200px;
+    height: 200px;
+    background: #ffffff;
+    bottom: 30px;
+    left: -50px;
+}
+
+.c3 {
+    width: 80px;
+    height: 80px;
+    background: #ffffff;
+    top: 50%;
+    right: 20px;
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- LEFT -->
+    <div class="left">
+        <h1>Resume Builder</h1>
+        <p>Create a professional resume in minutes.</p>
+    </div>
+    <div class="shapes">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+</div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <h2>Welcome Back</h2>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <button>Login</button>
+        </form>
+
+        <div class="footer">
+            Don't have an account? <a href="/signup">Signup</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

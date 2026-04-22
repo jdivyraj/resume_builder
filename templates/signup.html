@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+        }
+
+        .card {
+            display: flex;
+            width: 900px;
+            height: 520px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.8s ease;
+        }
+
+        /* LEFT */
+        .left {
+            width: 50%;
+            background: linear-gradient(135deg, #cdb4db, #ffc8dd);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left h1 {
+            margin-bottom: 10px;
+        }
+
+        .left p {
+            opacity: 0.8;
+        }
+
+        /* SHAPES */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            opacity: 0.15;
+        }
+
+        .c1 { width: 120px; height: 120px; top: 20px; left: 20px; }
+        .c2 { width: 200px; height: 200px; bottom: 20px; left: -50px; }
+        .c3 { width: 80px; height: 80px; top: 50%; right: 20px; }
+
+        /* RIGHT */
+        .right {
+            width: 50%;
+            background: rgba(255,255,255,0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        .right h2 {
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: none;
+            background: #f3f3f3;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: #e0e7ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        a {
+            color: #6a5acd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- LEFT -->
+    <div class="left">
+        <h1>Create Your Resume</h1>
+        <p>Join and build your professional resume in minutes.</p>
+
+        <span class="circle c1"></span>
+        <span class="circle c2"></span>
+        <span class="circle c3"></span>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <h2>Create Account</h2>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm" placeholder="Confirm Password" required>
+
+            <button>Sign Up</button>
+        </form>
+
+        <div class="footer">
+            Already have an account? <a href="/login">Login</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

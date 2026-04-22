@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #eaeaea;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .top-bar {
+            width: 800px;
+            margin: 20px auto 10px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .download-btn {
+            padding: 10px 18px;
+            background: #6c63ff;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #574fd6;
+        }
+
+        .resume {
+            width: 800px;
+            margin: auto;
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* LEFT */
+        .left {
+            width: 30%;
+            background: #2f3e46;
+            color: white;
+            padding: 25px;
+        }
+
+        .profile {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #ccc;
+            margin: auto;
+            margin-bottom: 15px;
+        }
+
+        .left h2 {
+            text-align: center;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+
+        .section h4 {
+            font-size: 13px;
+            color: #adb5bd;
+            margin-bottom: 5px;
+        }
+
+        .section p {
+            font-size: 14px;
+        }
+
+        /* RIGHT */
+        .right {
+            width: 70%;
+            padding: 30px;
+        }
+
+        .name {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .role {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .block {
+            margin-top: 20px;
+        }
+
+        .block h3 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .block p {
+            margin-top: 10px;
+        }
+@media print {
+
+    body {
+        background: white;
+        margin: 0;
+    }
+
+    .top-bar {
+        display: none;   /* ❌ hide button in PDF */
+    }
+
+    .resume {
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+    }
+
+}
+@page {
+    size: A4;
+    margin: 10mm;
+}
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+    </style>
+</head>
+
+<body>
+
+<!-- DOWNLOAD BUTTON -->
+<div class="top-bar">
+    <a href="/download" class="download-btn">⬇ Download PDF</a>
+</div>
+
+<!-- RESUME -->
+<div class="resume">
+
+    <!-- LEFT -->
+    <div class="left">
+
+        <div class="profile">
+    {% if data['photo'] %}
+        <img src="{{ url_for('static', filename='uploads/' + data['photo']) }}" class="profile-img">
+    {% endif %}
+</div>
+
+        <h2>{{ data['name'] }}</h2>
+
+        <div class="section">
+            <h4>CONTACT</h4>
+            <p>{{ data['email'] }}</p>
+            <p>{{ data['phone'] }}</p>
+        </div>
+
+        <div class="section">
+            <h4>SKILLS</h4>
+            <p>{{ data['skills'] }}</p>
+        </div>
+
+        <div class="section">
+            <h4>HOBBIES</h4>
+            <p>{{ data['hobbies'] }}</p>
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+        <div class="name">{{ data['name'] }}</div>
+        <div class="role">Software Developer</div>
+
+        <div class="block">
+            <h3>Profile</h3>
+            <p>
+                Motivated developer with strong skills in building applications and solving real-world problems.
+            </p>
+        </div>
+
+        <div class="block">
+            <h3>Education</h3>
+            <p>{{ data['education'] }}</p>
+        </div>
+
+        <div class="block">
+            <h3>Projects</h3>
+            <p>{{ data['projects'] }}</p>
+        </div>
+
+        <div class="block">
+            <h3>Achievements</h3>
+            <p>{{ data['achievements'] }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

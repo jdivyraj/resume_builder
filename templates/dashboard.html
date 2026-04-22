@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #eef2ff;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .logout {
+            background: #ff6b6b;
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* MAIN */
+        .container {
+            padding: 30px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        /* CARDS GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            opacity: 0.6;
+        }
+
+        /* STATS */
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .stat h2 {
+            color: #6c63ff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Resume Builder</div>
+
+    <div class="nav-right">
+        <span>Welcome 👋</span>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+    <h2>Dashboard</h2>
+
+    <!-- ACTION CARDS -->
+    <div class="grid">
+
+        <div class="card" onclick="location.href='/form'">
+            <h3>📝 Create Resume</h3>
+            <p>Build a new resume</p>
+        </div>
+
+        <div class="card" onclick="location.href='/preview'">
+            <h3>📄 View Resume</h3>
+            <p>See your latest resume</p>
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat">
+            <h2>1</h2>
+            <p>Resumes Created</p>
+        </div>
+
+        <div class="stat">
+            <h2>80%</h2>
+            <p>Profile Completion</p>
+        </div>
+
+        <div class="stat">
+            <h2>🔥</h2>
+            <p>Keep Going</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
