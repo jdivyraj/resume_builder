@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, send_file
 import sqlite3
 import pdfkit
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet
 import os
 from werkzeug.utils import secure_filename
 app = Flask(__name__)
@@ -33,7 +31,8 @@ def init_db():
         projects TEXT,
         education TEXT,
         achievements TEXT,
-        hobbies TEXT
+        hobbies TEXT,
+        photo TEXT
     )
     ''')
 
@@ -75,22 +74,39 @@ def signup():
 def login():
     error = None
     if request.method == 'POST':
-        u = request.form['username']
-        p = request.form['password']
+        photo = request.files['photo']
 
-        conn = sqlite3.connect('database.db')
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM users WHERE username=? AND password=?",(u,p))
-        user = cur.fetchone()
-        conn.close()
+    filename = None
+    if photo and photo.filename != "":
+        filename = secure_filename(photo.filename)
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        if user:
-            session['user_id'] = user[0]
-            return redirect('/dashboard')
-        else:
-            error = "Invalid credentials"
+    data = (
+        session['user_id'],
+        request.form['name'],
+        request.form['email'],
+        request.form['phone'],
+        request.form['skills'],
+        request.form['projects'],
+        request.form['education'],
+        request.form['achievements'],
+        request.form['hobbies'],
+        filename
+    )
 
-    return render_template('login.html', error=error)
+    conn = sqlite3.connect('database.db')
+    cur = conn.cursor()
+
+    cur.execute("""
+    INSERT INTO resumes 
+    (user_id,name,email,phone,skills,projects,education,achievements,hobbies,photo)
+    VALUES (?,?,?,?,?,?,?,?,?,?)
+    """, data)
+
+    conn.commit()
+    conn.close()
+
+    return redirect('/preview')
 
 # DASHBOARD
 @app.route('/dashboard')
