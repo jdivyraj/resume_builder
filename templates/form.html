@@ -1,73 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Create Resume</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Resume Builder</title>
 
-    <style>
-        body {
-            font-family: 'Segoe UI';
-            background: #f5f7ff;
-            margin: 0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
-        .container {
-            max-width: 700px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
 
-        h2 {
-            margin-bottom: 20px;
-        }
+.container {
+    display: flex;
+    height: 100vh;
+}
 
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-        }
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 20px;
+}
 
-        button {
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.sidebar h2 {
+    text-align: center;
+}
 
-        button:hover {
-            opacity: 0.9;
-        }
-    </style>
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px;
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Form Area */
+.form-area {
+    width: 100%;
+    padding: 30px;
+    background: white;
+    overflow-y: auto;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #667eea;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Type selector */
+.type-selector {
+    margin-bottom: 20px;
+}
+
+.type-selector button {
+    margin-right: 10px;
+}
+
+/* Sections */
+.hidden {
+    display: none;
+}
+
+h3 {
+    margin-top: 20px;
+}
+</style>
+
 </head>
 
 <body>
 
 <div class="container">
-    <h2>Create Your Resume</h2>
 
-    <form method="POST" enctype="multipart/form-data">
-<input type="text" name="name" placeholder="Full Name" required>
-<input type="email" name="email" placeholder="Email">
-<input type="text" name="phone" placeholder="Phone">
-<input type="file" name="photo"><br><br>
-<textarea name="skills" placeholder="Skills"></textarea>
-<textarea name="projects" placeholder="Projects"></textarea>
-<textarea name="education" placeholder="Education"></textarea>
-<textarea name="achievements" placeholder="Achievements"></textarea>
-<textarea name="hobbies" placeholder="Hobbies"></textarea>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>ResumeX</h2>
+        <ul>
+            <li onclick="showSection('personal')">👤 Personal</li>
+            <li onclick="showSection('studentSection')">🎓 Student</li>
+            <li onclick="showSection('jobSection')">💼 Job</li>
+        </ul>
+    </div>
 
-        <button>Create Resume</button>
+    <!-- Form -->
+    <div class="form-area">
 
-    </form>
+        <form action="/generate" method="POST">
+
+            <!-- Resume Type -->
+            <div class="type-selector">
+                <button type="button" onclick="setType('student')">🎓 Student</button>
+                <button type="button" onclick="setType('job')">💼 Job</button>
+            </div>
+
+            <!-- PERSONAL -->
+            <div id="personal" class="section">
+                <h3>Personal Info</h3>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="text" name="role" placeholder="Your Role">
+                <input type="email" name="email" placeholder="Email">
+                <input type="text" name="phone" placeholder="Phone">
+            </div>
+
+            <!-- STUDENT -->
+            <div id="studentSection" class="section">
+                <h3>Education</h3>
+                <input type="text" name="college" placeholder="College Name">
+                <input type="text" name="degree" placeholder="Degree">
+
+                <h3>Projects</h3>
+                <input type="text" name="projects" placeholder="Your Projects">
+
+                <h3>Skills</h3>
+                <input type="text" name="skills" placeholder="Skills">
+            </div>
+
+            <!-- JOB -->
+            <div id="jobSection" class="section hidden">
+                <h3>Experience</h3>
+                <input type="text" name="experience" placeholder="Work Experience">
+
+                <h3>Company</h3>
+                <input type="text" name="company" placeholder="Company Name">
+
+                <h3>Skills</h3>
+                <input type="text" name="skills" placeholder="Skills">
+            </div>
+
+            <br>
+            <button type="submit">Generate Resume</button>
+
+        </form>
+
+    </div>
+
 </div>
+
+<script>
+function showSection(sectionId) {
+    document.querySelectorAll(".section").forEach(sec => sec.classList.add("hidden"));
+    document.getElementById(sectionId).classList.remove("hidden");
+}
+
+function setType(type) {
+    if (type === "student") {
+        document.getElementById("studentSection").classList.remove("hidden");
+        document.getElementById("jobSection").classList.add("hidden");
+    } else {
+        document.getElementById("studentSection").classList.add("hidden");
+        document.getElementById("jobSection").classList.remove("hidden");
+    }
+}
+</script>
 
 </body>
 </html>
