@@ -77,13 +77,8 @@ button {
     margin-right: 10px;
 }
 
-/* Sections */
 .hidden {
     display: none;
-}
-
-h3 {
-    margin-top: 20px;
 }
 </style>
 
@@ -103,10 +98,11 @@ h3 {
         </ul>
     </div>
 
-    <!-- Form -->
+    <!-- Form Area -->
     <div class="form-area">
 
-        <form action="/generate" method="POST">
+        <!-- ✅ IMPORTANT FIX HERE -->
+        <form action="/form" method="POST" enctype="multipart/form-data">
 
             <!-- Resume Type -->
             <div class="type-selector">
@@ -114,26 +110,34 @@ h3 {
                 <button type="button" onclick="setType('job')">💼 Job</button>
             </div>
 
+            <!-- Hidden type field -->
+            <input type="hidden" name="type" id="typeField" value="student">
+
             <!-- PERSONAL -->
             <div id="personal" class="section">
                 <h3>Personal Info</h3>
                 <input type="text" name="name" placeholder="Your Name" required>
-                <input type="text" name="role" placeholder="Your Role">
                 <input type="email" name="email" placeholder="Email">
                 <input type="text" name="phone" placeholder="Phone">
+                <input type="file" name="photo">
             </div>
 
             <!-- STUDENT -->
             <div id="studentSection" class="section">
                 <h3>Education</h3>
-                <input type="text" name="college" placeholder="College Name">
-                <input type="text" name="degree" placeholder="Degree">
+                <input type="text" name="education" placeholder="College / Degree">
 
                 <h3>Projects</h3>
                 <input type="text" name="projects" placeholder="Your Projects">
 
                 <h3>Skills</h3>
                 <input type="text" name="skills" placeholder="Skills">
+
+                <h3>Achievements</h3>
+                <input type="text" name="achievements" placeholder="Achievements">
+
+                <h3>Hobbies</h3>
+                <input type="text" name="hobbies" placeholder="Hobbies">
             </div>
 
             <!-- JOB -->
@@ -164,6 +168,8 @@ function showSection(sectionId) {
 }
 
 function setType(type) {
+    document.getElementById("typeField").value = type;
+
     if (type === "student") {
         document.getElementById("studentSection").classList.remove("hidden");
         document.getElementById("jobSection").classList.add("hidden");
