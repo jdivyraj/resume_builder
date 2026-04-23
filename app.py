@@ -17,6 +17,7 @@ def init_db():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
+    # USERS TABLE
     cur.execute('''
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,6 +26,7 @@ def init_db():
     )
     ''')
 
+    # RESUMES TABLE (UPDATED)
     cur.execute('''
     CREATE TABLE IF NOT EXISTS resumes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,7 +39,10 @@ def init_db():
         education TEXT,
         achievements TEXT,
         hobbies TEXT,
-        photo TEXT
+        photo TEXT,
+        experience TEXT,
+        company TEXT,
+        type TEXT
     )
     ''')
 
@@ -120,6 +125,7 @@ def form():
 
     if request.method == 'POST':
 
+        # FILE UPLOAD
         photo = request.files.get('photo')
         filename = None
 
@@ -127,26 +133,31 @@ def form():
             filename = secure_filename(photo.filename)
             photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
+        # FORM DATA
         data = (
             session['user_id'],
-            request.form['name'],
-            request.form['email'],
-            request.form['phone'],
-            request.form['skills'],
-            request.form['projects'],
-            request.form['education'],
-            request.form['achievements'],
-            request.form['hobbies'],
-            filename
+            request.form.get('name'),
+            request.form.get('email'),
+            request.form.get('phone'),
+            request.form.get('skills'),
+            request.form.get('projects'),
+            request.form.get('education'),
+            request.form.get('achievements'),
+            request.form.get('hobbies'),
+            filename,
+            request.form.get('experience'),   # NEW
+            request.form.get('company'),      # NEW
+            request.form.get('type')          # NEW (student/job)
         )
 
+        # SAVE TO DB
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
 
         cur.execute("""
         INSERT INTO resumes 
-        (user_id,name,email,phone,skills,projects,education,achievements,hobbies,photo)
-        VALUES (?,?,?,?,?,?,?,?,?,?)
+        (user_id,name,email,phone,skills,projects,education,achievements,hobbies,photo,experience,company,type)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
         """, data)
 
         conn.commit()
